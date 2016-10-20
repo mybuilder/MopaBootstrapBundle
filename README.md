@@ -1,5 +1,6 @@
 MopaBootstrapBundle
 ===================
+V2.3.X
 
 MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
