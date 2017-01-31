@@ -6,6 +6,6 @@
 services:
    twig.extension.mopa.initializr:
        class: 'Mopa\Bundle\BootstrapBundle\Twig\MopaBootstrapInitializrTwigExtension'
-       arguments: [{ meta: '%mopa_bootstrap.initializr.meta%', dns_prefetch: '%mopa_bootstrap.initializr.dns_prefetch%', google: '%mopa_bootstrap.initializr.google%', diagnostic_mode: '%mopa_bootstrap.initializr.diagnostic_mode%' }]
+       arguments: [{ meta: '%mopa_bootstrap.initializr.meta%', dns_prefetch: '%mopa_bootstrap.initializr.dns_prefetch%', preconnect: '%mopa_bootstrap.initializr.preconnect%', google: '%mopa_bootstrap.initializr.google%', diagnostic_mode: '%mopa_bootstrap.initializr.diagnostic_mode%' }]
        tags:
           - { name: twig.extension }

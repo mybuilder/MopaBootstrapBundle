@@ -75,6 +75,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         $environment->addExtension(new MopaBootstrapInitializrTwigExtension(array(
             'mopa_bootstrap.initializr.meta' => null,
             'mopa_bootstrap.initializr.dns_prefetch' => null,
+            'mopa_bootstrap.initializr.preconnect' => null,
             'mopa_bootstrap.initializr.google' => null,
             'mopa_bootstrap.initializr.diagnostic_mode' => false,
         )));
