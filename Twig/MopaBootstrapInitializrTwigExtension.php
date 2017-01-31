@@ -39,6 +39,7 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
     {
         $meta = $this->parameters['meta'];
         $dns_prefetch = $this->parameters['dns_prefetch'];
+        $preconnect = $this->parameters['preconnect'];
         $google = $this->parameters['google'];
 
         // TODO: think about setting this default as kernel debug,
@@ -47,6 +48,7 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
 
         return array(
             'dns_prefetch'      => $dns_prefetch,
+            'preconnect'        => $preconnect,
             'meta'              => $meta,
             'google'            => $google,
             'diagnostic_mode'   => $diagnostic_mode

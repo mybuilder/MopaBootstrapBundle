@@ -70,6 +70,7 @@ class MopaBootstrapExtension extends Extension
             $container->setParameter('mopa_bootstrap.initializr.meta',$config['initializr']['meta']);
             $container->setParameter('mopa_bootstrap.initializr.google',$config['initializr']['google']);
             $container->setParameter('mopa_bootstrap.initializr.dns_prefetch',$config['initializr']['dns_prefetch']);
+            $container->setParameter('mopa_bootstrap.initializr.preconnect',$config['initializr']['preconnect']);
 
             // TODO: think about setting this default as kernel debug,
             // what about PROD env which does not need diagnostic mode and test
