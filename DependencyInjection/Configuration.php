@@ -236,7 +236,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                         ->arrayNode('prefetch')
                             ->treatNullLike(array())
-                            ->defaultValue(array('//ajax.googleapis.com'))
+                            ->defaultValue(array())
                             ->prototype('scalar')
                             ->end()
                         ->end()
