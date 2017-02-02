@@ -48,9 +48,6 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
     public function getGlobals()
     {
         $meta = $this->parameters['meta'];
-        $dns_prefetch = $this->parameters['dns_prefetch'];
-        $preconnect = $this->parameters['preconnect'];
-        $prefetch = $this->parameters['prefetch'];
         $google = $this->parameters['google'];
 
         // TODO: think about setting this default as kernel debug,
@@ -58,9 +55,6 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
         $diagnostic_mode = $this->parameters['diagnostic_mode'];
 
         return array(
-            'dns_prefetch'      => $dns_prefetch,
-            'preconnect'        => $preconnect,
-            'prefetch'          => $prefetch,
             'meta'              => $meta,
             'google'            => $google,
             'diagnostic_mode'   => $diagnostic_mode
