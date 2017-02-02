@@ -22,12 +22,22 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
     protected $parameters;
 
     /**
+     * @var array
+     */
+    protected $custom_config;
+
+    /**
      *
      * @param array
      */
     public function __construct(array $parameters)
     {
         $this->parameters = $parameters;
+        $this->custom_config = [
+            'dns_prefetch' => [],
+            'preconnect' => [],
+            'prefetch' => [],
+        ];
     }
 
     /**
@@ -38,8 +48,6 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
     public function getGlobals()
     {
         $meta = $this->parameters['meta'];
-        $dns_prefetch = $this->parameters['dns_prefetch'];
-        $preconnect = $this->parameters['preconnect'];
         $google = $this->parameters['google'];
 
         // TODO: think about setting this default as kernel debug,
@@ -47,8 +55,6 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
         $diagnostic_mode = $this->parameters['diagnostic_mode'];
 
         return array(
-            'dns_prefetch'      => $dns_prefetch,
-            'preconnect'        => $preconnect,
             'meta'              => $meta,
             'google'            => $google,
             'diagnostic_mode'   => $diagnostic_mode
@@ -67,7 +73,70 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
                 'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
                 'is_safe' => array('html'),
             )),
+            new \Twig_SimpleFunction('add_dns_prefetch_hosts', array($this, 'addDnsPrefetchHosts')),
+            new \Twig_SimpleFunction('add_preconnect_hosts', array($this, 'addPreconnectHosts')),
+            new \Twig_SimpleFunction('add_prefetch_hosts', array($this, 'addPrefetchHosts')),
+            new \Twig_SimpleFunction('get_dns_prefetch_hosts', array($this, 'getDnsPrefetchHosts')),
+            new \Twig_SimpleFunction('get_preconnect_hosts', array($this, 'getPreconnectHosts')),
+            new \Twig_SimpleFunction('get_prefetch_hosts', array($this, 'getPrefetchHosts')),
         );
+    }
+
+    /**
+     * @param array $urls
+     */
+    public function addDnsPrefetchHosts(array $urls)
+    {
+        $this->custom_config['dns_prefetch'] = array_merge(
+            $this->custom_config['dns_prefetch'],
+            $urls
+        );
+    }
+
+    /**
+     * @param array $urls
+     */
+    public function addPreconnectHosts(array $urls)
+    {
+        $this->custom_config['preconnect'] = array_merge(
+            $this->custom_config['preconnect'],
+            $urls
+        );
+    }
+
+    /**
+     * @param array $urls
+     */
+    public function addPrefetchHosts(array $urls)
+    {
+        $this->custom_config['prefetch'] = array_merge(
+            $this->custom_config['prefetch'],
+            $urls
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getDnsPrefetchHosts()
+    {
+        return array_unique(array_merge($this->parameters['dns_prefetch'], $this->custom_config['dns_prefetch']));
+    }
+
+    /**
+     * @return array
+     */
+    public function getPreconnectHosts()
+    {
+        return array_unique(array_merge($this->parameters['preconnect'], $this->custom_config['preconnect']));
+    }
+
+    /**
+     * @return array
+     */
+    public function getPrefetchHosts()
+    {
+        return array_unique(array_merge($this->parameters['prefetch'], $this->custom_config['prefetch']));
     }
 
     /**
