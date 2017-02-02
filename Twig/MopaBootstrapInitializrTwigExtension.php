@@ -22,12 +22,22 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
     protected $parameters;
 
     /**
+     * @var array
+     */
+    protected $custom_config;
+
+    /**
      *
      * @param array
      */
     public function __construct(array $parameters)
     {
         $this->parameters = $parameters;
+        $this->custom_config = [
+            'dns_prefetch' => [],
+            'preconnect' => [],
+            'prefetch' => [],
+        ];
     }
 
     /**
@@ -69,7 +79,61 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
                 'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
                 'is_safe' => array('html'),
             )),
+            new \Twig_SimpleFunction('add_dns_prefetch', array($this, 'addDnsPrefetchResource')),
+            new \Twig_SimpleFunction('add_preconnect', array($this, 'addPreconnectResource')),
+            new \Twig_SimpleFunction('add_prefetch', array($this, 'addPrefetchResource')),
+            new \Twig_SimpleFunction('get_dns_prefetch', array($this, 'getDnsPrefetchResources')),
+            new \Twig_SimpleFunction('get_preconnect', array($this, 'getPreconnectResources')),
+            new \Twig_SimpleFunction('get_prefetch', array($this, 'getPrefetchResources')),
         );
+    }
+
+    /**
+     * @param string $url
+     */
+    public function addDnsPrefetchResource($url)
+    {
+        $this->custom_config['dns_prefetch'][] = $url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function addPreconnectResource($url)
+    {
+        $this->custom_config['preconnect'][] = $url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function addPrefetchResource($url)
+    {
+        $this->custom_config['prefetch'][] = $url;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDnsPrefetchResources()
+    {
+        return array_merge($this->parameters['dns_prefetch'], $this->custom_config['dns_prefetch']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getPreconnectResources()
+    {
+        return array_merge($this->parameters['preconnect'], $this->custom_config['preconnect']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getPrefetchResources()
+    {
+        return array_merge($this->parameters['prefetch'], $this->custom_config['prefetch']);
     }
 
     /**
