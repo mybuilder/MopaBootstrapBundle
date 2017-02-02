@@ -120,7 +120,7 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
      */
     public function getDnsPrefetchHosts()
     {
-        return array_merge($this->parameters['dns_prefetch'], $this->custom_config['dns_prefetch']);
+        return array_unique(array_merge($this->parameters['dns_prefetch'], $this->custom_config['dns_prefetch']));
     }
 
     /**
@@ -128,7 +128,7 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
      */
     public function getPreconnectHosts()
     {
-        return array_merge($this->parameters['preconnect'], $this->custom_config['preconnect']);
+        return array_unique(array_merge($this->parameters['preconnect'], $this->custom_config['preconnect']));
     }
 
     /**
@@ -136,7 +136,7 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \T
      */
     public function getPrefetchHosts()
     {
-        return array_merge($this->parameters['prefetch'], $this->custom_config['prefetch']);
+        return array_unique(array_merge($this->parameters['prefetch'], $this->custom_config['prefetch']));
     }
 
     /**
