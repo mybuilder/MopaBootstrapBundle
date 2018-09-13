@@ -33,7 +33,7 @@ class HexColorType extends AbstractType
             'compound' => false,
         ));
 
-        $resolver->setOptional(array(
+        $resolver->setDefined(array(
             'colorpicker'
         ));
     }
