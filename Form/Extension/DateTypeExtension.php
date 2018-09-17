@@ -31,7 +31,7 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array(
+        $resolver->setDefined(array(
             'datepicker'
         ));
     }
