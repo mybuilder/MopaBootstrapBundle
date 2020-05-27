@@ -34,7 +34,8 @@ class MopaBootstrapExtension extends Extension
         $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $yamlloader->load('twig_extensions.yml');
         $yamlloader->load("form_extensions.yml");
-        
+        $yamlloader->load("commands.yml");
+
         if (isset($config['form'])) {
             foreach ($config['form'] as $key => $value) {
                 if (is_array($value)) {
