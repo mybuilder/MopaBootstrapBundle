@@ -1,0 +1,6 @@
+services:
+  Mopa\Bundle\BootstrapBundle\Command\:
+    resource: '../../Command'
+    autowire: true
+    exclude: '../../Command/BaseBootstrapSymlinkCommand.php'
+    tags: ['console.command']

@@ -15,13 +15,12 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "Mopa\\Bundle\\BootstrapBundle": ""
+        "psr-4": {
+            "Mopa\\Bundle\\BootstrapBundle\\": ""
         }
     },
-    "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
-        "symfony/symfony": "~2.3|~3.0",
+        "symfony/symfony": "^3.3",
         "mopa/composer-bridge": "1.3.*",
         "twig/twig": "~1.23"
     },
